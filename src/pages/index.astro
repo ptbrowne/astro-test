@@ -3,6 +3,7 @@
 import Chart from '../components/Chart'
 import Slide from '../components/Slide'
 import Slides from '../components/Slides'
+import { fetchData } from '../data';
 
 const palette = [
 	'#90C8AC',
@@ -11,7 +12,8 @@ const palette = [
 	'#73A9AD'
 ]
 
-
+const data1 = await fetchData(['486', '36'])
+const data2 = await fetchData(['609', '853'])
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
 ---
@@ -35,10 +37,10 @@ const palette = [
 			<h2>This content is before the fold !</h2>
 		</Slide>
 		<Slide style={{ background: palette[1] }}>
-			<Chart client:visible operatorIds={['486', '36' ]} />
+			<Chart client:visible operatorIds={['486', '36' ]} data={data1} />
 		</Slide>
 		<Slide style={{ background: palette[2] }}>
-			<Chart client:visible operatorIds={['609', '853' ]} />
+			<Chart client:visible operatorIds={['609', '853' ]} data={data2} />
 		</Slide>
 	</Slides>
 </body>
