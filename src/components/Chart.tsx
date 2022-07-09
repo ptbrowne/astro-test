@@ -10,7 +10,9 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { fetchData } from "../data";
-import { sortBy, groupBy, mapValues } from "lodash";
+import lodash from "lodash";
+
+const { sortBy, groupBy, mapValues } = lodash;
 
 const usePromise = <T extends unknown>(promiser: () => Promise<T>) => {
   const [data, setData] = useState(null);
