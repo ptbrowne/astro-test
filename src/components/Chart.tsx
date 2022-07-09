@@ -42,36 +42,38 @@ export default ({ operatorIds, data }) => {
 
   return data ? (
     <div style={{ height: 400, width: 800 }}>
-      <LineChart
-        width={500}
-        height={300}
-        data={pivotted}
-        margin={{
-          top: 5,
-          right: 30,
-          left: 20,
-          bottom: 5,
-        }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="period" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        {operatorIds.map((operatorId) => (
-          <Line
-            key={operatorId}
-            type="monotone"
-            dataKey={`https://energy.ld.admin.ch/elcom/electricityprice/operator/${operatorId}`}
-            name={
-              names[
-                `https://energy.ld.admin.ch/elcom/electricityprice/operator/${operatorId}`
-              ]
-            }
-            activeDot={{ r: 8 }}
-          />
-        ))}
-      </LineChart>
+      <ResponsiveContainer>
+        <LineChart
+          width={500}
+          height={300}
+          data={pivotted}
+          margin={{
+            top: 5,
+            right: 30,
+            left: 20,
+            bottom: 5,
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="period" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          {operatorIds.map((operatorId) => (
+            <Line
+              key={operatorId}
+              type="monotone"
+              dataKey={`https://energy.ld.admin.ch/elcom/electricityprice/operator/${operatorId}`}
+              name={
+                names[
+                  `https://energy.ld.admin.ch/elcom/electricityprice/operator/${operatorId}`
+                ]
+              }
+              activeDot={{ r: 8 }}
+            />
+          ))}
+        </LineChart>
+      </ResponsiveContainer>
     </div>
   ) : (
     <div>Loading data...</div>
